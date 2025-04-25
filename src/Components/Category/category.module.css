@@ -1,0 +1,41 @@
+.category {
+    height: 350px;
+    width: 350px;
+    background-color: white;
+    box-shadow:0 0 10px rgba(47, 194, 194, 0.5);
+}
+
+.category img {
+    width: 100%;
+    object-fit: contain;
+    padding: 0px 10px;
+    max-height: 250px;
+}
+
+.category a {
+    text-decoration: none;
+    color: rgb(35, 35, 35);
+}
+
+.category h2, .category p {
+    padding: 5px;
+    margin-left: 15px;
+}
+
+.category p {
+    font-size: 12px;
+    font-weight: bold;
+    color: rgb(9, 132, 209);
+}
+
+.Category_container {    
+    place-items: center;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    max-width: 1500px;
+    margin: -100px auto 100px auto;
+    gap: 10px;
+    justify-items: center;
+    
+}
