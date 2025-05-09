@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import classes from './header.module.css'
 import { BsSearch } from "react-icons/bs";
 import { SlLocationPin } from "react-icons/sl";
@@ -7,10 +7,13 @@ import LowerHeader from './LowerHeader';
 import amazonLogo from './images/amazon_logo.png'
 import flag from "./images/Flag_of_the_United_States.svg.png";
 import { Link } from 'react-router-dom';
+import { DataContext } from '../DataProvider/DataProvider';
 
 function Header() {
 
+ const [ {basket}, dispatch ] = useContext(DataContext);
  
+  //  console.log(basket)
 
   return (
     <div className={classes.fixed}>
@@ -20,10 +23,7 @@ function Header() {
         <div className={classes.logo_container}>
           {/* amazon logo */}
           <Link to="/">
-            <img
-              src={amazonLogo}
-              alt="amazon logo"
-            />
+            <img src={amazonLogo} alt="amazon logo" />
           </Link>
 
           {/* delivery */}
@@ -54,10 +54,7 @@ function Header() {
 
         <div className={classes.order_container}>
           <Link to="" className={classes.language}>
-            <img
-              src={flag}
-              alt=""
-            />
+            <img src={flag} alt="" />
             <select name="" id="">
               <option value="">EN</option>
             </select>
@@ -77,9 +74,9 @@ function Header() {
 
           {/* cart */}
 
-          <Link to='/cart' className={classes.cart}>
-            <BiCart size={35}/>
-            <span>0</span>
+          <Link to="/cart" className={classes.cart}>
+            <BiCart size={35} />
+            <span>{basket.length}</span>
           </Link>
         </div>
       </section>
