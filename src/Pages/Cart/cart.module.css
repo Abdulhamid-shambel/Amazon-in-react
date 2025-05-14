@@ -9,6 +9,34 @@
     width: 100px !important;
 }
 
+.cart_product {
+    display: flex;
+    gap: 20px;
+    
+}
+
+.btn_container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn_container button {
+    padding: 5px 16px;
+    border: none;
+    background-color: #fff;
+    color: black;
+    cursor: pointer;
+    font-weight: bold;
+
+}
+
+.btn_container button:hover {
+    background-color: #f3f3f3;
+}
+
 .cart_container {
     padding: 20px;
 }
