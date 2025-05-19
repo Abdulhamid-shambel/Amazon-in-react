@@ -89,3 +89,10 @@ form {
 .createAccountButton:hover {
     background-color: lightgray;
 }
+
+.error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+    text-align: center;
+}

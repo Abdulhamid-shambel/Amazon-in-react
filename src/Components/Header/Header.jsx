@@ -8,10 +8,11 @@ import amazonLogo from './images/amazon_logo.png'
 import flag from "./images/Flag_of_the_United_States.svg.png";
 import { Link } from 'react-router-dom';
 import { DataContext } from '../DataProvider/DataProvider';
+import { auth } from '../../utility/firebase';
 
 function Header() {
 
- const [ {basket}, dispatch ] = useContext(DataContext);
+ const [ {user, basket}, dispatch ] = useContext(DataContext);
  const totalItem = basket.reduce((amount, item) => {
     return item.amount + amount;
   }, 0);
@@ -47,7 +48,7 @@ function Header() {
           </select>
           <input type="text" placeholder="search product" />
           {/* search icon */}
-          <BsSearch size={25} />
+          <BsSearch size={38} />
         </div>
 
         {/* right side */}
@@ -59,10 +60,19 @@ function Header() {
               <option value="">EN</option>
             </select>
           </Link>
-          <Link to="/auth">
+          <Link to={!user && "/auth"}>
             <div>
-              <p>Sign In</p>
-              <span>Account & Lists</span>
+              {user ? (
+                <>
+                <p>Hello, {user?.email?.split("@")[0]}</p>
+                <span onClick={() => auth.signOut()}>Sign Out</span>
+                </>
+              ) : (
+                <>
+                <p>Hello, Sign In</p>
+                <span>Account & Lists</span>
+                </>
+              )}
             </div>
           </Link>
 
