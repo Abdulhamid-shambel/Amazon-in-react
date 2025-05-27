@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import classes from "./auth.module.css";
 import AmazonLogo from "./image/Amazon_logo.png";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { auth } from "../../utility/firebase";
 import {
   createUserWithEmailAndPassword,
@@ -20,8 +20,10 @@ function Auth() {
 
   const [{ user }, dispatch] = useContext(DataContext);
   const navigate = useNavigate();
+  const navStateData = useLocation();
+  console.log(navStateData);
 
-  console.log(user);
+  // console.log(user);
 
   const authHandler = async (e) => {
     e.preventDefault();
@@ -37,7 +39,7 @@ function Auth() {
             user: userInfo.user,
           });
           setLoading({ ...loading, signIn: false });
-          navigate("/");
+          navigate(navStateData?.state?.redirect || "/");
         })
         .catch((err) => {
           setError(err.message);
@@ -54,7 +56,7 @@ function Auth() {
             user: userInfo.user,
           });
           setLoading({ ...loading, signUp: false });
-          navigate("/");
+          navigate(navStateData?.state?.redirect || "/");
         })
         .catch((err) => {
           setError(err.message);
@@ -71,6 +73,13 @@ function Auth() {
 
       <div className={classes.form_container}>
         <h1>Sign-In</h1>
+        {
+          navStateData?.state?.msg && (
+            <small className={classes.error}>
+              {navStateData.state.msg}
+            </small>
+          )
+        }
         <form>
           <div className={classes.inputContainer}>
             <label htmlFor="email">Email</label>
