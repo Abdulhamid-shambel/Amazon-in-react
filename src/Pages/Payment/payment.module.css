@@ -12,7 +12,7 @@
 }
 
 .flex h3 {
-  min-width: 300px;
+  min-width: 276px;
 }
 
 .flex img {
@@ -57,7 +57,15 @@ form {
   gap: 10px;
 }
 
-@media (max-width: 678px) {
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: rgb(52, 52, 52);
+}
+
+@media (max-width: 668px) {
   .flex {
     flex-direction: column;
     align-items: center;
@@ -76,3 +84,5 @@ form {
     width: 100%;
   }
 }
+
+/* 32:35 */
