@@ -9,9 +9,10 @@ import { axiosInstance } from "../../Api/axios";
 import ClipLoader from "react-spinners/ClipLoader";
 import { db } from "../../utility/firebase";
 import { useNavigate } from "react-router-dom";
+import { Type } from "../../utility/action.type";
 
 function Payment() {
-  const [{ user, basket }] = useContext(DataContext);
+  const [{ user, basket }, dispatch] = useContext(DataContext);
 
   const totalItem = basket.reduce((amount, item) => {
     return item.amount + amount;
@@ -73,6 +74,12 @@ function Payment() {
           amount: paymentIntent.amount,
           created: paymentIntent.created
         });
+
+      // 4, clear the basket
+
+      dispatch({
+        type: Type.EMPTY_BASKET,
+      });
 
       setIsProcessing(false);
 
